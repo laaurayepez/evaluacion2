@@ -1,0 +1,48 @@
+---
+title: "My Dashbord at IAS"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard) # always
+library(ggplot2)
+library(sf)
+```
+
+<!-- links -->
+```{r}
+map1link= "map1oficial.rds"
+viz1=map1link
+
+```
+
+## Intro {.sidebar}
+Análisis de Precios en Belltown
+Este dashboard presenta la predicción de precios para los alojamientos de Airbnb en el vecindario de Belltown, Seattle.
+
+Detalles del Modelo:
+
+Algoritmo: RadiusNeighborsRegressor
+
+Radio de búsqueda: 500 unidades
+
+Ponderación: Basada en distancia (distance-based weighting).
+
+Interpretación del Mapa:
+
+Los colores intensos (amarillos y verdes) indican zonas con predicciones de precios más elevados.
+
+Las áreas en gris claro representan lugares donde no se encontraron listados de Airbnb dentro del radio de 500 unidades, por lo que el modelo no pudo realizar una estimación.
+
+
+
+## Column {data-width="750"}
+```{r}
+
+readRDS(viz1)
+```
+
+
+
